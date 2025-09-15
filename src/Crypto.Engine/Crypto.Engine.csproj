@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Crypto.Core\Crypto.Core.csproj" />
       <ProjectReference Include="..\Crypto.Engine.Core\Crypto.Engine.Core.csproj" />
-      <ProjectReference Include="..\src\Crypto.Core\Crypto.Core.csproj" />
     </ItemGroup>
 
 </Project>
