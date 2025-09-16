@@ -15,7 +15,6 @@ public interface IBlockCipherTransform
         int inputOffset, 
         int inputCount);
     
-    
     // int InputBlockSize
     // {
     //     get;

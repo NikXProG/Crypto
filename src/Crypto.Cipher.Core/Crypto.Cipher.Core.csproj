@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Crypto.Core\Crypto.Core.csproj" />
+      <Folder Include="Interfaces\" />
     </ItemGroup>
 
 </Project>

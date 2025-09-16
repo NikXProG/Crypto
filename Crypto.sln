@@ -6,14 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Core", "src\Crypto.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Tests", "test\Crypto.Tests\Crypto.Tests.csproj", "{FB1743C3-4436-4DB3-B0A3-DB8B9F5B85BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Engine", "src\Crypto.Engine\Crypto.Engine.csproj", "{D94A0D54-941A-4964-931F-8C98A6ACA6A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Engine.Core", "src\Crypto.Engine.Core\Crypto.Engine.Core.csproj", "{765401CD-80A4-4AED-B880-02D83FDAC135}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Core.Tests", "test\Crypto.Core.Tests\Crypto.Core.Tests.csproj", "{2CF362EE-ECFC-4DB0-A8F9-10A61035ABD6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Engine.Tests", "test\Crypto.Engine.Tests\Crypto.Engine.Tests.csproj", "{28737774-E63F-40D9-9A01-6B4634C97053}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,21 +24,5 @@ Global
 		{FB1743C3-4436-4DB3-B0A3-DB8B9F5B85BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1743C3-4436-4DB3-B0A3-DB8B9F5B85BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1743C3-4436-4DB3-B0A3-DB8B9F5B85BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D94A0D54-941A-4964-931F-8C98A6ACA6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D94A0D54-941A-4964-931F-8C98A6ACA6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D94A0D54-941A-4964-931F-8C98A6ACA6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D94A0D54-941A-4964-931F-8C98A6ACA6A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{765401CD-80A4-4AED-B880-02D83FDAC135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{765401CD-80A4-4AED-B880-02D83FDAC135}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{765401CD-80A4-4AED-B880-02D83FDAC135}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{765401CD-80A4-4AED-B880-02D83FDAC135}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CF362EE-ECFC-4DB0-A8F9-10A61035ABD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CF362EE-ECFC-4DB0-A8F9-10A61035ABD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CF362EE-ECFC-4DB0-A8F9-10A61035ABD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CF362EE-ECFC-4DB0-A8F9-10A61035ABD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28737774-E63F-40D9-9A01-6B4634C97053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28737774-E63F-40D9-9A01-6B4634C97053}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28737774-E63F-40D9-9A01-6B4634C97053}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28737774-E63F-40D9-9A01-6B4634C97053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

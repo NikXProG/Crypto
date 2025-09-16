@@ -1,8 +1,10 @@
+using Crypto.Ciphers;
 using Crypto.Core.Interfaces;
 using Crypto.Core;
 using Crypto.Symmetrical;
 using Crypto.Symmetrical.Algorithms;
 using Crypto.Symmetrical.Builders;
+using Crypto.Symmetrical.Generators;
 
 namespace Crypto
 {
@@ -11,14 +13,11 @@ namespace Crypto
         
         public static ISymmetrical CreateDes(byte[] key, byte[] iv)
         {
-            return new DesBuilder()
-                .WithFeistelSize(FeistelNetSize.Large)
-                .WithSymmetricalParams(
-                    b => b
-                        .WithIV(iv)
-                        .WithKey(key)
-                        .Build())
-                .Build();
+            return new DesCipher()
+            {
+                Key = key,
+                IV = iv
+            };
         }
 
         public static ISymmetrical CreateTripleDes()

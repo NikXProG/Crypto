@@ -8,6 +8,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Crypto.Core\Crypto.Core.csproj" />
+      <ProjectReference Include="..\Crypto.Cipher.Core\Crypto.Cipher.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Asymmetrical\" />
+      <Folder Include="Symmetrical\" />
     </ItemGroup>
 
 </Project>

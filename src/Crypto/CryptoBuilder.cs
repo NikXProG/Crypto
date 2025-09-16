@@ -5,7 +5,7 @@ namespace Crypto;
 
 public static class CryptoBuilder
 {
-    public static DesBuilder UseDesAlgorithm() => new DesBuilder();
+    public static DesBuilder UseDes() => new DesBuilder();
     
     // public static AesBuilder CreateAes() 
     
