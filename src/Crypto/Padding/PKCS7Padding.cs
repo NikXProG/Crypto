@@ -1,26 +1,37 @@
-using Crypto.Core.Interfaces;
+using Crypto.Domain.Interfaces;
 
 namespace Crypto.Padding;
 
 public class PKCS7Padding : IBlockCipherPadding
 {
-    public int ApplyPadding(ReadOnlySpan<byte> block, Span<byte> destination, int paddingSizeInBytes)
+    public int AddPadding(byte[] input, int inOff)
     {
-        throw new NotImplementedException();
-    }
+        int count = input.Length - inOff;
+        byte padValue = (byte)count;
 
-    public int CalculatePaddedLength(int plaintextLength, int paddingSizeInBytes)
-    {
-        throw new NotImplementedException();
-    }
+        while (inOff < input.Length)
+        {
+            input[inOff++] = padValue;
+        }
 
-    public bool IsAutoDepaddingSupported()
-    {
-        throw new NotImplementedException();
+        return count;
     }
+    
 
-    public int ValidateAndRemovePadding(ReadOnlySpan<byte> block, int blockSize)
+    public int PadCount(byte[] input)
     {
-        throw new NotImplementedException();
+        byte padValue = input[^1];
+        int count = padValue;
+        int position = input.Length - count;
+
+        int failed = (position | (count - 1)) >> 31;
+        for (int i = 0; i < input.Length; ++i)
+        {
+            failed |= (input[i] ^ padValue) & ~((i - position) >> 31);
+        }
+        if (failed != 0)
+            throw new InvalidOperationException("pad block corrupted");
+
+        return count;
     }
 }

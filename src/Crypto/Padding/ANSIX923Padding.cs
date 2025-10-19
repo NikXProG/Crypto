@@ -1,26 +1,17 @@
-using Crypto.Core.Interfaces;
+using Crypto.Domain.Interfaces;
 
 namespace Crypto.Padding;
 
 public class ANSIX923Padding : IBlockCipherPadding
 {
-    public int ApplyPadding(ReadOnlySpan<byte> block, Span<byte> destination, int paddingSizeInBytes)
+    public int AddPadding(byte[] input, int inOff)
     {
         throw new NotImplementedException();
     }
 
-    public int CalculatePaddedLength(int plaintextLength, int paddingSizeInBytes)
+    public int PadCount(byte[] input)
     {
         throw new NotImplementedException();
     }
-
-    public bool IsAutoDepaddingSupported()
-    {
-        throw new NotImplementedException();
-    }
-
-    public int ValidateAndRemovePadding(ReadOnlySpan<byte> block, int blockSize)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

@@ -4,10 +4,19 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Crypto.Core\Crypto.Core.csproj" />
+      <ProjectReference Include="..\Crypto.Domain\Crypto.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Crypto.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     </ItemGroup>
 
 </Project>

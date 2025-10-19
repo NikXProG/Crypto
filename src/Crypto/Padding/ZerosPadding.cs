@@ -1,28 +1,33 @@
-using Crypto.Core.Interfaces;
+using Crypto.Domain.Interfaces;
 
 namespace Crypto.Padding;
 
 public class ZerosPadding : IBlockCipherPadding
 {
-    
-    public int ApplyPadding(ReadOnlySpan<byte> block, Span<byte> destination, int paddingSizeInBytes)
+    public int AddPadding(byte[] input, int inOff)
     {
-        throw new NotImplementedException();
+        int added = input.Length - inOff;
+
+        while (inOff < input.Length)
+        {
+            input[inOff++] = 0x00;
+        }
+
+        return added;
     }
 
-    public int CalculatePaddedLength(int plaintextLength, int paddingSizeInBytes)
+    public int PadCount(byte[] input)
     {
-        throw new NotImplementedException();
-    }
-
-    public bool IsAutoDepaddingSupported()
-    {
-        throw new NotImplementedException();
-    }
-
-    public int ValidateAndRemovePadding(ReadOnlySpan<byte> block, int blockSize)
-    {
-        throw new NotImplementedException();
+        int count = 0, still00Mask = -1;
+        int i = input.Length;
+        while (--i >= 0)
+        {
+            int next = input[i];
+            int match00Mask = ((next ^ 0x00) - 1) >> 31;
+            still00Mask &= match00Mask;
+            count -= still00Mask;
+        }
+        return count;
     }
     
 }
