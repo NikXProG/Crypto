@@ -1,6 +1,7 @@
 
 using Crypto.Domain.Enums;
 using Crypto.Domain.Interfaces;
+using Crypto.Generators;
 using Crypto.Operators;
 using Crypto.Padding;
 
@@ -50,6 +51,8 @@ public class BlockCipherBuilder : IBlockCipherBuilder
             BlockPadding.None => BuildNonePadding(),
             BlockPadding.Zeros => BuildZerosPadding(),
             BlockPadding.PKCS7 => BuildPKCS7Padding(),
+            BlockPadding.ANSIX923 => BuildANSIX923Padding(),
+            BlockPadding.ISO10126 => BuildISO10126Padding(),
             _ => throw new NotImplementedException($"Padding {_padding} is not supported")
         };
     }
@@ -71,6 +74,16 @@ public class BlockCipherBuilder : IBlockCipherBuilder
         return new PaddedBlockCipherOperator(_modeBuilder.Build(), new PKCS7Padding());
     }
     
+    private ICipherOperator BuildISO10126Padding()
+    {
+        return new PaddedBlockCipherOperator(_modeBuilder.Build(), new ISO10126Padding(new CryptoRandom()));
+    }
+
+    private ICipherOperator BuildANSIX923Padding()
+    {
+        return new PaddedBlockCipherOperator(_modeBuilder.Build(),  new ANSIX923Padding(new CryptoRandom()));
+    }
+
     #endregion
     
     #endregion

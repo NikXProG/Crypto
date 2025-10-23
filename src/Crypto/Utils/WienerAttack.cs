@@ -140,32 +140,6 @@ public class WienerAttack
     
 }
 
-
-
-public class RsaFactors
-{
-    
-    public BigInteger P { get; }
-    public BigInteger Q { get; }
-
-    public RsaFactors(BigInteger p, BigInteger q)
-    {
-        P = p;
-        Q = q;
-    }
-    
-    public void Deconstruct(out BigInteger p, out BigInteger q)
-    {
-        p = P;
-        q = Q;
-    }
-    
-    public override string ToString() => $"P: {P}, Q: {Q}";
-    
-}
-
-
-
 public class Fraction
 {
     public BigInteger Numerator { get; set; }

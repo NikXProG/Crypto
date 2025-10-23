@@ -25,18 +25,28 @@ public class ISO10126Padding : IBlockCipherPadding
     public int AddPadding(byte[] input, int inOff)
     {
         int count = input.Length - inOff;
+        
         if (count > 1)
         {
             _randomGen.NextBytes(input, inOff, count - 1);
         }
-        input[input.Length - 1] = (byte)count;
+        
+        input[^1] = (byte)count;
 
         return count;
     }
 
     public int PadCount(byte[] input)
     {
-        throw new NotImplementedException();
+        int count = input[^1];
+        int position = input.Length - count;
+
+        int failed = (position | (count - 1)) >> 31;
+        
+        if (failed != 0)
+            throw new InvalidOperationException("pad block corrupted");
+
+        return count;
     }
     
     #endregion

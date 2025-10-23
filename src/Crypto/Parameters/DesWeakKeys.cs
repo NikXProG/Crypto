@@ -27,17 +27,20 @@ internal static class DesWeakKeys
     public static IReadOnlySet<ulong> AllWeakKeys { get; } = 
         WeakKeys.Union(SemiWeakKeys).ToHashSet();
     
-    public static bool IsValidKey(byte[] key)
+    public static bool IsWeakKey(byte[] key)
     {
-            
-        if (key == null || key.Length != 8)
-            return false;
-        
-        return !DesWeakKeys.AllWeakKeys.Contains(GetNormalizedKey(key));
-            
+        return key != null && IsWeakKey(key.AsSpan(0));
     }
-
-    private static ulong GetNormalizedKey(byte[] key) =>
+    
+    public static bool IsWeakKey(ReadOnlySpan<byte> key)
+    {
+        if (key.Length != 8)
+            return false;
+    
+        return AllWeakKeys.Contains(GetNormalizedKey(key));
+    }
+    
+    private static ulong GetNormalizedKey(ReadOnlySpan<byte> key) =>
         BinaryPrimitives.ReadUInt64BigEndian(key.EnsureOddParity());
 
     

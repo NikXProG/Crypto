@@ -9,6 +9,13 @@ namespace Crypto;
 
 public static class CryptoBuilder
 {
+    
+    public static IBlockCipherBuilder UseDeal() =>
+        new BlockCipherBuilder(new DealEngine());
+    
+    public static IBlockCipherBuilder Use3Des() =>
+        new BlockCipherBuilder(new TripleDesEngine());
+    
     public static IBlockCipherBuilder UseDes() =>
         new BlockCipherBuilder(new DesEngine());
 

@@ -18,6 +18,11 @@ namespace Crypto.Helpers
         
         internal static byte[] EnsureOddParity(this byte[] key)
         {
+            return EnsureOddParity(key.AsSpan(0));
+        }
+        
+        internal static byte[] EnsureOddParity(this ReadOnlySpan<byte> key)
+        {
             var oddParityKey = new byte[key.Length];
             for (int index = 0; index < key.Length; index++)
             {
@@ -46,6 +51,11 @@ namespace Crypto.Helpers
         {
             return BinaryPrimitives.ReadUInt32BigEndian(bs);
         }
+        
+        internal static ulong ToUInt64(this ReadOnlySpan<byte> bytes)
+        {
+            return BitConverter.ToUInt64(bytes);
+        }
 
         internal static void ToRawByte(this uint n, byte[] bs, int off)
         {
@@ -56,5 +66,11 @@ namespace Crypto.Helpers
         {
             BinaryPrimitives.WriteUInt32BigEndian(saveBuffer, n);
         }
+        
+        internal static void ToRawByte(this ulong value, Span<byte> output)
+        {
+            BitConverter.TryWriteBytes(output, value);
+        }
+        
     }
 }
