@@ -14,19 +14,19 @@
 
 ```csharp
 
-
-var plain = Encoding.ASCII.GetBytes("Hello, Cryptography!");
+byte[] plain = Encoding.ASCII.GetBytes("Hello, Cryptography!");
 
 ISymmetricKeyGenerator keyGen = new AesKeyGenerator(new CryptoRandom(), 256);
 
 ICipherOperator oper = CryptoBuilder
-        .UseAes()
-        .WithMode(builder => builder.UseCbcMode())
-        .AddPadding(BlockPadding.PKCS7)
-        .WithIV(keyGen.GenerateIV())
-        .Build();
+    .UseAes()
+    .WithMode(builder => builder
+        .UseMode(CipherMode.CBC)
+        .WithIV(keyGen.GenerateIV()))
+    .AddPadding(BlockPadding.PKCS7)
+    .Build();
 
-SymmetricKey key = keyGen.GenerateKey();
+ICryptoParams key = keyGen.GenerateKey();
 
 //cipher.Setup(true, key);
 //byte[] encrypted = cipher.ProcessAll(data, 0 , data.Length);
@@ -39,7 +39,9 @@ byte[] encrypted = oper.Encrypt(key, plain);
 
 byte[] decrypted = oper.Decrypt(key, encrypted);
 
-Console.WriteLine(decrypted) // Hello, Cryptography!
+string decryptedText = Encoding.UTF8.GetString(decrypted);
+
+Console.WriteLine(decryptedText);  // Hello, Cryptography!
 
 ```
 
