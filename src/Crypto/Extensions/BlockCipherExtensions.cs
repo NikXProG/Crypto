@@ -14,7 +14,15 @@ namespace Crypto.Extensions
             byte[] key,
             byte[] plaintext)
         {
-            cipherOperator.Setup(true, new SymmetricKey(key));
+            return cipherOperator.Encrypt(new SymmetricKey(key), plaintext);
+        }
+        
+        public static byte[] Encrypt(
+            this ICipherOperator cipherOperator,
+            ICryptoParams param,
+            byte[] plaintext)
+        {
+            cipherOperator.Setup(true, param);
             return cipherOperator.ProcessAll(plaintext);
         }
         
@@ -24,41 +32,63 @@ namespace Crypto.Extensions
             byte[] iv,
             byte[] plaintext)
         {
+           return cipherOperator.Encrypt(
+               new SymmetricKey(key),
+               iv, 
+               plaintext);
+        }
+        
+        public static byte[] Encrypt(
+            this ICipherOperator cipherOperator,
+            ICryptoParams keyParam,
+            byte[] iv,
+            byte[] plaintext)
+        {
             cipherOperator.Setup(true,
-                new IVWithParams(
-                    new SymmetricKey(key), 
-                    iv                
-                ));
+                new IVWithParams(keyParam, iv));
             
             return cipherOperator.ProcessAll(plaintext);
         }
+
         
         #endregion
         
         #region Decrypt
         
+               
         public static byte[] Decrypt(
             this ICipherOperator cipherOperator,
             byte[] key,
             byte[] ciphertext)
         {
-            cipherOperator.Setup(false, new SymmetricKey(key));
+            return cipherOperator.Decrypt(new SymmetricKey(key), ciphertext);
+        }
+
+        public static byte[] Decrypt(
+            this ICipherOperator cipherOperator,
+            ICryptoParams param,
+            byte[] ciphertext)
+        {
+            cipherOperator.Setup(false, param);
             return cipherOperator.ProcessAll(ciphertext);
         }
-        
+
         public static byte[] Decrypt(
             this ICipherOperator cipherOperator,
             byte[] key,
             byte[] iv,
             byte[] ciphertext)
         {
-            
-            cipherOperator.Setup(false,
-                new IVWithParams(
-                    new SymmetricKey(key), 
-                    iv                
-                ));
-            
+            return cipherOperator.Decrypt(new SymmetricKey(key), iv, ciphertext);
+        }
+
+        public static byte[] Decrypt(
+            this ICipherOperator cipherOperator,
+            ICryptoParams keyParam,
+            byte[] iv,
+            byte[] ciphertext)
+        {
+            cipherOperator.Setup(false, new IVWithParams(keyParam, iv));
             return cipherOperator.ProcessAll(ciphertext);
         }
         

@@ -1,6 +1,7 @@
 using Crypto.Domain.Enums;
 using Crypto.Domain.Interfaces;
 using Crypto.Generators;
+using Crypto.Tests.Algorithms;
 using Crypto.Tests.Base;
 
 namespace Crypto.Tests.IO;

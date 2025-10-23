@@ -1,7 +1,7 @@
 using Crypto.Domain.Interfaces;
 using Crypto.Domain.Parameters;
 
-namespace Crypto.Tests.Base;
+namespace Crypto.Tests.Algorithms;
 
 public abstract class BlockCipherStreamTests
 {
