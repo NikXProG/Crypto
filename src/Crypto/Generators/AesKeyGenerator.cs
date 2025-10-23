@@ -19,7 +19,14 @@ public class AesKeyGenerator : ISymmetricKeyGenerator
     public AesKeyGenerator(IRandomGenerator randomGen, int keySize)
     {
         _randomGen = randomGen ?? throw new ArgumentNullException(nameof(randomGen));
-        _keySize = keySize;
+        
+        if (keySize != 128 && keySize != 192 && keySize != 256)
+        {
+            throw new ArgumentException("Aes key must be 128, 192 or 256 bits long.");
+        }
+    
+        _keySize = keySize / 8;
+        
     }
     
     #endregion
@@ -41,7 +48,7 @@ public class AesKeyGenerator : ISymmetricKeyGenerator
 
     public SymmetricKey GenerateKey()
     {
-        return new SymmetricKey(_randomGen.GenerateArrayBytes(_keySize / 8));
+        return new SymmetricKey(_randomGen.GenerateArrayBytes(_keySize));
     }
     
     #endregion

@@ -9,7 +9,7 @@ using Crypto.Helpers;
 
 namespace Crypto;
 
-public sealed class SimpleStream : Stream
+public sealed class CryptoStream : Stream
 {
     
     #region Fields
@@ -32,7 +32,7 @@ public sealed class SimpleStream : Stream
     
     #region Constructors
     
-    public SimpleStream(Stream stream, ICipherOperator cipher, CryptoStreamMode mode)
+    public CryptoStream(Stream stream, ICipherOperator cipher, CryptoStreamMode mode)
     {
         _stream = stream;
         _operator = cipher;

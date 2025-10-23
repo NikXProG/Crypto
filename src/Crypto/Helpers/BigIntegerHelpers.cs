@@ -48,6 +48,7 @@ internal static class BigIntegerHelpers
     {
         return CryptoPrimeCore.HasSmallPrimeFactor(a);
     }
+    
     internal static BigInteger ModInverse(this BigInteger a, BigInteger m)
     {
         if (m <= 1)

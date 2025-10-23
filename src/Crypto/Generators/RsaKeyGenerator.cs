@@ -113,7 +113,7 @@ public class RsaKeyGenerator : IAsymmetricKeyGenerator
         
             BigInteger p1 = p - 1;
             BigInteger q1 = q - 1;
-            BigInteger gcd = BigInteger.GreatestCommonDivisor(p1, q1);
+            BigInteger gcd = p1.Gcd(q1);
             BigInteger lcm = (p1 / gcd) * q1;
         
             BigInteger d = e.ModInverse(lcm);

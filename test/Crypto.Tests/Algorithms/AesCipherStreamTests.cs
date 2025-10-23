@@ -1,18 +1,18 @@
 using Crypto.Domain.Enums;
 using Crypto.Domain.Interfaces;
 using Crypto.Generators;
+using Crypto.Tests.Base;
 
 namespace Crypto.Tests.IO;
 
-public class TripleDesStreamTests : BlockCipherStreamTests
+public class AesCipherStreamTests : BlockCipherStreamTests
 {
     protected override ICipherOperator CreateCipherOperator() => CryptoBuilder
-        .Use3Des()
+        .UseAes()
         .WithMode(builder => builder.UseCbcMode())
         .AddPadding(BlockPadding.PKCS7)
         .Build();
 
     protected override ISymmetricKeyGenerator CreateKeyGenerator() => 
-        new TripleDesKeyGenerator(new CryptoRandom(),128);
-    
+        new AesKeyGenerator(new CryptoRandom(), 256);
 }

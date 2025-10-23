@@ -1,12 +1,10 @@
 using System.Reflection;
 
-namespace Crypto.Tests;
+namespace Crypto.Tests.Algorithms;
 
-public class BinaryBaseTests
+public abstract class BinaryBaseTests
 {
-    
-    
-    private static Assembly GetAssembly() => typeof(BinaryBaseTests).Assembly;
+    private static Assembly GetAssembly() => typeof(CipherBaseTests).Assembly;
     
     private static string GetTestFilePath(string fileName)
     {
@@ -16,7 +14,7 @@ public class BinaryBaseTests
         return Path.Combine(Directory.GetCurrentDirectory(), fileName);
     }
     
-    internal static byte[] GetBinaryData(string fileName)
+    protected static byte[] GetBinaryData(string fileName)
     {
         var filePath = GetTestFilePath(fileName);
         
@@ -24,5 +22,5 @@ public class BinaryBaseTests
             throw new FileNotFoundException($"Test data file not found: {filePath}") : 
             File.ReadAllBytes(filePath);
     }
-    
+
 }

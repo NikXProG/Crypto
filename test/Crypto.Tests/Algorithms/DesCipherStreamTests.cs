@@ -3,6 +3,7 @@ using Crypto.Domain.Exceptions;
 using Crypto.Domain.Interfaces;
 using Crypto.Domain.Parameters;
 using Crypto.Generators;
+using Crypto.Tests.Base;
 
 namespace Crypto.Tests.IO;
 

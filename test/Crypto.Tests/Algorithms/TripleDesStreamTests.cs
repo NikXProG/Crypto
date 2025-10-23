@@ -1,18 +1,19 @@
 using Crypto.Domain.Enums;
 using Crypto.Domain.Interfaces;
 using Crypto.Generators;
+using Crypto.Tests.Base;
 
 namespace Crypto.Tests.IO;
 
-public class DealCipherStreamTests : BlockCipherStreamTests
-{ 
+public class TripleDesStreamTests : BlockCipherStreamTests
+{
     protected override ICipherOperator CreateCipherOperator() => CryptoBuilder
-        .UseDeal()
+        .Use3Des()
         .WithMode(builder => builder.UseCbcMode())
-        .AddPadding(BlockPadding.ISO10126)
+        .AddPadding(BlockPadding.PKCS7)
         .Build();
 
     protected override ISymmetricKeyGenerator CreateKeyGenerator() => 
-        new DealKeyGenerator(new CryptoRandom(), 256);
+        new TripleDesKeyGenerator(new CryptoRandom(),128);
     
 }

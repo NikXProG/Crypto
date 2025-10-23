@@ -1,4 +1,4 @@
-namespace Crypto.Tests.IO;
+namespace Crypto.Tests.Base;
 
 public static class TestDataProvider
 {

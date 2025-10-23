@@ -5,6 +5,8 @@ using Crypto.Domain.Interfaces;
 using Crypto.Engines;
 using Crypto.Extensions;
 using Crypto.Generators;
+using Crypto.Tests.Algorithms;
+using Crypto.Tests.Base;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using Xunit.Abstractions;
@@ -13,7 +15,6 @@ namespace Crypto.Tests.IO;
 
 public class SimpleStreamTests : BinaryBaseTests
 {
-
     
     [Theory]
     [InlineData("scripts/Trie.cs")]
@@ -35,7 +36,7 @@ public class SimpleStreamTests : BinaryBaseTests
         using (var ms = new MemoryStream())
         {
             cipher.Setup(true, key);
-            using (var cryptoStream = new SimpleStream(ms, cipher, CryptoStreamMode.Write))
+            using (var cryptoStream = new CryptoStream(ms, cipher, CryptoStreamMode.Write))
             {
                 cryptoStream.Write(data, 0, data.Length);
                 cryptoStream.FlushFinal();
@@ -47,7 +48,7 @@ public class SimpleStreamTests : BinaryBaseTests
         using (var ms = new MemoryStream(encrypted))
         {
             cipher.Setup(false, key);
-            using (var cryptoStream = new SimpleStream(ms, cipher, CryptoStreamMode.Read))
+            using (var cryptoStream = new CryptoStream(ms, cipher, CryptoStreamMode.Read))
             using (var resultStream = new MemoryStream())
             {
                 cryptoStream.CopyTo(resultStream);
@@ -81,7 +82,7 @@ public class SimpleStreamTests : BinaryBaseTests
         using (var ms = new MemoryStream())
         {
             cipher.Setup(true, key);
-            using (var cryptoStream = new SimpleStream(ms, cipher, CryptoStreamMode.Write))
+            using (var cryptoStream = new CryptoStream(ms, cipher, CryptoStreamMode.Write))
             {
                 cryptoStream.Write(data, 0, data.Length);
                 cryptoStream.FlushFinal();
@@ -100,7 +101,7 @@ public class SimpleStreamTests : BinaryBaseTests
         using (var ms = new MemoryStream(encrypted))
         {
             cipher.Setup(false, key);
-            using (var cryptoStream = new SimpleStream(ms, cipher, CryptoStreamMode.Read))
+            using (var cryptoStream = new CryptoStream(ms, cipher, CryptoStreamMode.Read))
             using (var resultStream = new MemoryStream())
             {
                 cryptoStream.CopyTo(resultStream);

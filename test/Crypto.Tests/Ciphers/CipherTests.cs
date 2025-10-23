@@ -1,13 +1,13 @@
-using System.Runtime.Intrinsics.X86;
-using Crypto.Engines;
 using Crypto.Tests.Algorithms;
 using Crypto.Tests.Base;
+using Crypto.Tests.IO;
 
-namespace Crypto.Tests.IO;
+namespace Crypto.Tests.Ciphers;
 
-public class CipherStreamTests : CipherBaseTests
+public class CipherTests : CipherBaseTests
 {
     
+       
     [Theory]
     [MemberData(nameof(TestDataProvider.GetRandomData), MemberType = typeof(TestDataProvider))]
     public void TripleDes_EncryptDecryptBinaryTest(byte[] data)
@@ -53,8 +53,7 @@ public class CipherStreamTests : CipherBaseTests
     public void Aes_EncryptDecryptFileTest(string filePath)
         => EncryptDecryptWithBlockTests(new AesCipherStreamTests(), GetBinaryData(filePath));
 
-    
-   protected override void EncryptDecryptWithBlockTests(BlockCipherStreamTests tests, byte[] data) => 
-        tests.TestWithStream(data);
+    protected override void EncryptDecryptWithBlockTests(BlockCipherStreamTests tests, byte[] data) =>
+        tests.TestSimpleCipher(data);
     
 }

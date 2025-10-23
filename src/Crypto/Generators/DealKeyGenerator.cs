@@ -18,12 +18,14 @@ public class DealKeyGenerator : ISymmetricKeyGenerator
     public DealKeyGenerator(IRandomGenerator randomGen, int keySize)
     {
         _randomGen = randomGen ??  throw new ArgumentNullException(nameof(randomGen));
-        _keySize = (keySize + 7) / 8;
         
-        if (_keySize != 16 && _keySize != 24 && _keySize != 32)
+        if (keySize != 128 && keySize != 192 && keySize != 256)
         {
             throw new ArgumentException("DEAL key must be 128, 192 or 256 bits long.");
         }
+    
+        _keySize = keySize / 8;
+        
     }
     
     #endregion
